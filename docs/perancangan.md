@@ -2,7 +2,7 @@
 
 **Mata Kuliah:** Pemrograman Web 2 (Client-Side Programming)
 **Tugas:** Tugas ke-1 — Milestone 1
-**Nama / NIM:** Gloria Ageng Larasati - 231011401649
+**Nama - NIM:** Gloria Ageng Larasati - 231011401649
 **Topik:** Sistem Informasi Perpustakaan Digital (E-Library)
 **Tema UI:** Material Design 3
 **Bahasa antarmuka:** English (US); dokumen ini memakai bahasa Indonesia
@@ -208,8 +208,6 @@ erDiagram
 ```
 
 > Entitas `PENGATURAN` berdiri sendiri (tanpa relasi) karena menyimpan pasangan kunci dan nilai yang dibaca oleh banyak halaman.
-
-> Karena tugas ini tanpa database, data di atas disimulasikan sebagai array/objek JSON di JavaScript (atau Google Spreadsheet).
 
 ### Kamus Data Entitas Data Master
 
@@ -502,9 +500,7 @@ Grid per halaman: Dashboard memakai 4 kartu ringkasan lalu 2 kolom (line chart s
 
 ### 6.1 Referensi Desain (AI-generated)
 
-Gambar berikut dibuat dengan bantuan AI (designarena.ai dan Stitch) dan dipakai sebagai **referensi layout awal**. Desain final beserta design system dibuat ulang di Figma (bagian 6.2).
-
-- Link Stitch: _(tempel link di sini jika ada)_
+Gambar berikut dibuat dengan Figma Make dan dipakai sebagai **referensi layout awal**. Desain final beserta design system dibuat ulang di Figma (bagian 6.2).
 
 | Halaman | Gambar |
 |---|---|
@@ -520,7 +516,7 @@ Gambar berikut dibuat dengan bantuan AI (designarena.ai dan Stitch) dan dipakai 
 
 ### 6.2 Figma (Design System & High-Fidelity UI)
 
-- **Link publik Figma:** _(tempel link Figma publik di sini; pastikan akses "Anyone with the link can view")_
+https://www.figma.com/design/rb4qIuxjCpaJxOA7wNNQYF/E-library-Design?node-id=1-2&t=xHNwYzhXewClBVD8-1
 
 ![Design System - Figma](../assets/img/figma-design-system.png)
 ![High-Fidelity Dashboard - Figma](../assets/img/figma-dashboard.png)
