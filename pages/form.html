@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Book | E-Library Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-menu="data-master.html">
+
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="brand-logo"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span></div>
+      <div><strong>E-Library Admin</strong><small>DIGITAL LIBRARY SYSTEM</small></div>
+    </div>
+
+    <nav class="menu">
+      <p class="menu-label">MAIN MENU</p>
+      <a href="dashboard.html"><span class="material-symbols-outlined" aria-hidden="true">dashboard</span>Dashboard</a>
+
+      <p class="menu-label">DATA MASTER</p>
+      <button class="dropdown-btn" aria-expanded="false">
+        <span class="material-symbols-outlined" aria-hidden="true">database</span>Data Master
+        <span class="material-symbols-outlined chevron" aria-hidden="true">expand_more</span>
+      </button>
+      <ul class="submenu">
+        <li><a href="data-master.html"><span class="material-symbols-outlined" aria-hidden="true">book</span>Books<span class="badge">1,250</span></a></li>
+        <li><a href="categories.html"><span class="material-symbols-outlined" aria-hidden="true">category</span>Categories</a></li>
+        <li><a href="authors.html"><span class="material-symbols-outlined" aria-hidden="true">edit_note</span>Authors</a></li>
+        <li><a href="publishers.html"><span class="material-symbols-outlined" aria-hidden="true">apartment</span>Publishers</a></li>
+      </ul>
+      <a href="membership.html"><span class="material-symbols-outlined" aria-hidden="true">group</span>Membership<span class="badge">342</span></a>
+
+      <p class="menu-label">CIRCULATION</p>
+      <button class="dropdown-btn" aria-expanded="false">
+        <span class="material-symbols-outlined" aria-hidden="true">sync</span>Circulation
+        <span class="material-symbols-outlined chevron" aria-hidden="true">expand_more</span>
+      </button>
+      <ul class="submenu">
+        <li><a href="loans.html"><span class="material-symbols-outlined" aria-hidden="true">assignment</span>Loans<span class="badge">87</span></a></li>
+        <li><a href="returns.html"><span class="material-symbols-outlined" aria-hidden="true">keyboard_return</span>Returns</a></li>
+        <li><a href="reservations.html"><span class="material-symbols-outlined" aria-hidden="true">bookmark</span>Reservations<span class="badge">18</span></a></li>
+        <li><a href="penalties.html"><span class="material-symbols-outlined" aria-hidden="true">payments</span>Penalties</a></li>
+      </ul>
+
+      <p class="menu-label">LIBRARY</p>
+      <a href="digital-collection.html"><span class="material-symbols-outlined" aria-hidden="true">collections_bookmark</span>Digital Collection</a>
+      <a href="laporan.html"><span class="material-symbols-outlined" aria-hidden="true">bar_chart</span>Reports</a>
+      <a href="settings.html"><span class="material-symbols-outlined" aria-hidden="true">settings</span>Settings</a>
+    </nav>
+
+    <div class="profile-card">
+      <div class="avatar">AH</div>
+      <div><strong>Amelia Hart</strong><small>Super Admin</small></div>
+      <a class="icon-btn" href="../index.html" aria-label="Log out"><span class="material-symbols-outlined" aria-hidden="true">logout</span></a>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="main-wrap">
+    <header class="header">
+      <button class="icon-btn" id="menuToggle" aria-label="Toggle sidebar"><span class="material-symbols-outlined" aria-hidden="true">menu</span></button>
+      <div class="page-title"><strong>Book Form</strong><small>Add or edit a book</small></div>
+
+      <label class="search">
+        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        <input type="search" id="searchInput" placeholder="Search books, members, ISBN..." aria-label="Search">
+        <kbd>Ctrl K</kbd>
+      </label>
+
+      <div class="header-right">
+        <div class="clock"><strong id="clockTime"></strong><span id="clockDate"></span></div>
+        <button class="icon-btn" aria-label="Help"><span class="material-symbols-outlined" aria-hidden="true">help</span></button>
+        <button class="icon-btn" aria-label="Notifications"><span class="material-symbols-outlined" aria-hidden="true">notifications</span><span class="dot">4</span></button>
+        <div class="user">
+          <div class="avatar">AH</div>
+          <div><strong>Amelia Hart</strong><small>Administrator</small></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">Data Master / <a href="data-master.html">Books</a> / <strong id="crumb">Add Book</strong></nav>
+
+      <section class="card" aria-labelledby="formTitle">
+        <div class="card-head"><div><h2 id="formTitle">Add Book</h2><p id="subtitle"></p></div></div>
+
+        <form id="bookForm" novalidate>
+          <div class="form-grid">
+          <div class="field" id="field-isbn">
+            <label for="isbn">ISBN *</label>
+            <input type="text" id="isbn" name="isbn" placeholder="978-602-1000-0" inputmode="numeric" aria-describedby="err-isbn">
+            <p class="error" id="err-isbn"></p>
+          </div>
+          <div class="field" id="field-title">
+            <label for="title">Book Title *</label>
+            <input type="text" id="title" name="title" placeholder="e.g. Sapiens: A Brief History of Humankind" aria-describedby="err-title">
+            <p class="error" id="err-title"></p>
+          </div>
+          <div class="field" id="field-author">
+            <label for="author">Author *</label>
+            <select id="author" name="author" aria-describedby="err-author"></select>
+            <p class="error" id="err-author"></p>
+          </div>
+          <div class="field" id="field-publisher">
+            <label for="publisher">Publisher *</label>
+            <select id="publisher" name="publisher" aria-describedby="err-publisher"></select>
+            <p class="error" id="err-publisher"></p>
+          </div>
+          <div class="field" id="field-category">
+            <label for="category">Category *</label>
+            <select id="category" name="category" aria-describedby="err-category"></select>
+            <p class="error" id="err-category"></p>
+          </div>
+          <div class="field" id="field-year">
+            <label for="year">Publication Year *</label>
+            <input type="number" id="year" name="year" min="1000" placeholder="2024" aria-describedby="err-year">
+            <p class="error" id="err-year"></p>
+          </div>
+          <div class="field" id="field-stock">
+            <label for="stock">Stock *</label>
+            <input type="number" id="stock" name="stock" min="0" placeholder="0" aria-describedby="err-stock">
+            <p class="error" id="err-stock"></p>
+          </div>
+          <div class="field" id="field-price">
+            <label for="price">Price (Rp) *</label>
+            <input type="number" id="price" name="price" min="0" step="1000" placeholder="95000" aria-describedby="err-price">
+            <p class="error" id="err-price"></p>
+          </div>
+
+          <fieldset class="field field-full" aria-label="Book type">
+            <legend>Book Type *</legend>
+            <label class="radio"><input type="radio" name="type" value="Physical" checked> Physical</label>
+            <label class="radio"><input type="radio" name="type" value="Digital"> Digital</label>
+          </fieldset>
+
+          <div class="field">
+            <label>Upload Cover</label>
+            <div class="dropzone" id="coverZone" tabindex="0" role="button" aria-label="Upload cover image">
+              <span class="material-symbols-outlined" aria-hidden="true">cloud_upload</span>
+              <span><strong>Drag and drop</strong> or click to upload</span>
+              <small id="coverName">PNG or JPG (preview only)</small>
+              <img id="coverPreview" alt="Cover preview" hidden>
+            </div>
+            <input type="file" id="cover" accept="image/*" hidden>
+          </div>
+
+          <div class="field" id="field-ebook" hidden>
+            <label>Upload E-Book File *</label>
+            <div class="dropzone" id="ebookZone" tabindex="0" role="button" aria-label="Upload e-book file">
+              <span class="material-symbols-outlined" aria-hidden="true">upload_file</span>
+              <span><strong>Drag and drop</strong> or click to upload</span>
+              <small id="ebookName">PDF or EPUB</small>
+            </div>
+            <input type="file" id="ebook" accept=".pdf,.epub" hidden aria-describedby="err-ebook">
+            <p class="error" id="err-ebook"></p>
+          </div>
+
+          <div class="field field-full">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4" placeholder="Short summary of the book"></textarea>
+          </div>
+          </div>
+
+          <div class="form-actions">
+            <a class="btn" href="data-master.html">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">&copy; 2026 E-Library Admin. All rights reserved.</footer>
+  </div>
+
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/form.js"></script>
+</body>
+</html>

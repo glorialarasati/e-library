@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digital Collection | E-Library Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="brand-logo"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span></div>
+      <div><strong>E-Library Admin</strong><small>DIGITAL LIBRARY SYSTEM</small></div>
+    </div>
+
+    <nav class="menu">
+      <p class="menu-label">MAIN MENU</p>
+      <a href="dashboard.html"><span class="material-symbols-outlined" aria-hidden="true">dashboard</span>Dashboard</a>
+
+      <p class="menu-label">DATA MASTER</p>
+      <button class="dropdown-btn" aria-expanded="false">
+        <span class="material-symbols-outlined" aria-hidden="true">database</span>Data Master
+        <span class="material-symbols-outlined chevron" aria-hidden="true">expand_more</span>
+      </button>
+      <ul class="submenu">
+        <li><a href="data-master.html"><span class="material-symbols-outlined" aria-hidden="true">book</span>Books<span class="badge">1,250</span></a></li>
+        <li><a href="categories.html"><span class="material-symbols-outlined" aria-hidden="true">category</span>Categories</a></li>
+        <li><a href="authors.html"><span class="material-symbols-outlined" aria-hidden="true">edit_note</span>Authors</a></li>
+        <li><a href="publishers.html"><span class="material-symbols-outlined" aria-hidden="true">apartment</span>Publishers</a></li>
+      </ul>
+      <a href="membership.html"><span class="material-symbols-outlined" aria-hidden="true">group</span>Membership<span class="badge">342</span></a>
+
+      <p class="menu-label">CIRCULATION</p>
+      <button class="dropdown-btn" aria-expanded="false">
+        <span class="material-symbols-outlined" aria-hidden="true">sync</span>Circulation
+        <span class="material-symbols-outlined chevron" aria-hidden="true">expand_more</span>
+      </button>
+      <ul class="submenu">
+        <li><a href="loans.html"><span class="material-symbols-outlined" aria-hidden="true">assignment</span>Loans<span class="badge">87</span></a></li>
+        <li><a href="returns.html"><span class="material-symbols-outlined" aria-hidden="true">keyboard_return</span>Returns</a></li>
+        <li><a href="reservations.html"><span class="material-symbols-outlined" aria-hidden="true">bookmark</span>Reservations<span class="badge">18</span></a></li>
+        <li><a href="penalties.html"><span class="material-symbols-outlined" aria-hidden="true">payments</span>Penalties</a></li>
+      </ul>
+
+      <p class="menu-label">LIBRARY</p>
+      <a href="digital-collection.html"><span class="material-symbols-outlined" aria-hidden="true">collections_bookmark</span>Digital Collection</a>
+      <a href="laporan.html"><span class="material-symbols-outlined" aria-hidden="true">bar_chart</span>Reports</a>
+      <a href="settings.html"><span class="material-symbols-outlined" aria-hidden="true">settings</span>Settings</a>
+    </nav>
+
+    <div class="profile-card">
+      <div class="avatar">AH</div>
+      <div><strong>Amelia Hart</strong><small>Super Admin</small></div>
+      <a class="icon-btn" href="../index.html" aria-label="Log out"><span class="material-symbols-outlined" aria-hidden="true">logout</span></a>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="main-wrap">
+    <header class="header">
+      <button class="icon-btn" id="menuToggle" aria-label="Toggle sidebar"><span class="material-symbols-outlined" aria-hidden="true">menu</span></button>
+      <div class="page-title"><strong>Digital Collection</strong><small>Manage e-books and downloads</small></div>
+
+      <label class="search">
+        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        <input type="search" id="searchInput" placeholder="Search books, members, ISBN..." aria-label="Search">
+        <kbd>Ctrl K</kbd>
+      </label>
+
+      <div class="header-right">
+        <div class="clock"><strong id="clockTime"></strong><span id="clockDate"></span></div>
+        <button class="icon-btn" aria-label="Help"><span class="material-symbols-outlined" aria-hidden="true">help</span></button>
+        <button class="icon-btn" aria-label="Notifications"><span class="material-symbols-outlined" aria-hidden="true">notifications</span><span class="dot">4</span></button>
+        <div class="user">
+          <div class="avatar">AH</div>
+          <div><strong>Amelia Hart</strong><small>Administrator</small></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">Library / <strong>Digital Collection</strong></nav>
+
+      <div class="page-head">
+        <div><h1>Digital Collection</h1><p>E-books available to members. Upload new titles or review download activity.</p></div>
+        <div class="actions"><button class="btn btn-primary" id="uploadBtn"><span class="material-symbols-outlined" aria-hidden="true">upload_file</span>Upload E-Book</button></div>
+      </div>
+
+      <section class="stats three" aria-label="Summary">
+        <article class="stat"><div class="stat-top"><span class="stat-icon"><span class="material-symbols-outlined" aria-hidden="true">collections_bookmark</span></span></div>
+          <p class="stat-num" id="sTotal">0</p><p class="stat-label">Total E-Books</p></article>
+        <article class="stat tone-green"><div class="stat-top"><span class="stat-icon"><span class="material-symbols-outlined" aria-hidden="true">download</span></span></div>
+          <p class="stat-num" id="sDownloads">0</p><p class="stat-label">Total Downloads</p></article>
+        <article class="stat tone-amber"><div class="stat-top"><span class="stat-icon"><span class="material-symbols-outlined" aria-hidden="true">hard_drive</span></span></div>
+          <p class="stat-num" id="sStorage">0 MB</p><p class="stat-label">Storage Used</p>
+          <p class="stat-note">of 5 GB quota</p><div class="progress"><span id="sBar" style="width:1%"></span></div></article>
+      </section>
+
+      <section class="card" aria-labelledby="listTitle">
+        <div class="card-head">
+          <div><h2 id="listTitle">E-Book Library</h2></div>
+          <div class="toolbar">
+            <input type="search" id="search" placeholder="Search title, author, ISBN..." aria-label="Search e-books">
+            <select id="filterCategory" aria-label="Filter by category"><option value="">All categories</option></select>
+            <select id="filterFormat" aria-label="Filter by format"><option value="">All formats</option><option>PDF</option><option>EPUB</option></select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>No</th><th>Cover</th><th>Title</th><th>Author</th><th>Category</th><th>Format</th><th>File Size</th><th>Downloads</th><th>Uploaded On</th><th style="text-align:right">Actions</th></tr></thead>
+            <tbody id="body"></tbody>
+          </table>
+        </div>
+        <div class="table-foot"><span id="pageInfo"></span><div class="pager" id="pager"></div></div>
+      </section>
+
+      <dialog id="uploadDialog" class="wide" aria-labelledby="uploadTitle">
+        <h2 id="uploadTitle">Upload E-Book</h2>
+        <form id="uploadForm" novalidate>
+          <div class="form-grid">
+            <div class="field field-full" id="field_file">
+              <label>E-Book File *</label>
+              <div class="dropzone" id="ebookZone" tabindex="0" role="button" aria-label="Upload e-book file">
+                <span class="material-symbols-outlined" aria-hidden="true">upload_file</span>
+                <span><strong>Drag and drop</strong> or click to upload</span>
+                <small id="ebookName">PDF or EPUB</small>
+              </div>
+              <input type="file" id="f_file" accept=".pdf,.epub" hidden aria-describedby="err_file">
+              <p class="error" id="err_file"></p>
+            </div>
+            <div class="field field-full" id="field_title"><label for="f_title">Book Title *</label><input type="text" id="f_title" aria-describedby="err_title"><p class="error" id="err_title"></p></div>
+            <div class="field" id="field_author"><label for="f_author">Author *</label><select id="f_author" aria-describedby="err_author"></select><p class="error" id="err_author"></p></div>
+            <div class="field" id="field_category"><label for="f_category">Category *</label><select id="f_category" aria-describedby="err_category"></select><p class="error" id="err_category"></p></div>
+            <div class="field" id="field_isbn"><label for="f_isbn">ISBN-13 *</label><input type="text" id="f_isbn" placeholder="978-602-1000-0" inputmode="numeric" aria-describedby="err_isbn"><p class="error" id="err_isbn"></p></div>
+          </div>
+          <div class="dialog-actions">
+            <button type="button" class="btn" data-close>Cancel</button>
+            <button type="submit" class="btn btn-primary">Upload</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog id="previewDialog" class="wide" aria-labelledby="pvTitle">
+        <div class="pv-head"><div id="pvCover"></div><div><h2 id="pvTitle"></h2><p class="mini-label" id="pvMeta"></p></div></div>
+        <p class="view-facts" id="pvFacts"></p>
+        <div class="reader"><span>Reader preview is not available in this demo</span></div>
+        <div class="dialog-actions"><button class="btn" data-close>Close</button></div>
+      </dialog>
+
+      <dialog id="deleteDialog" aria-labelledby="deleteTitle">
+        <h2 id="deleteTitle">Delete this e-book?</h2>
+        <p id="deleteText"></p>
+        <div class="dialog-actions">
+          <button class="btn" data-close>Cancel</button>
+          <button class="btn btn-danger" id="confirmDelete">Delete</button>
+        </div>
+      </dialog>
+    </main>
+
+    <footer class="footer">&copy; 2026 E-Library Admin. All rights reserved.</footer>
+  </div>
+
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/circ.js"></script>
+  <script src="../assets/js/digital.js"></script>
+</body>
+</html>

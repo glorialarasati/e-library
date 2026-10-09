@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Returns | E-Library Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="brand-logo"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span></div>
+      <div><strong>E-Library Admin</strong><small>DIGITAL LIBRARY SYSTEM</small></div>
+    </div>
+
+    <nav class="menu">
+      <p class="menu-label">MAIN MENU</p>
+      <a href="dashboard.html"><span class="material-symbols-outlined" aria-hidden="true">dashboard</span>Dashboard</a>
+
+      <p class="menu-label">DATA MASTER</p>
+      <button class="dropdown-btn" aria-expanded="false">
+        <span class="material-symbols-outlined" aria-hidden="true">database</span>Data Master
+        <span class="material-symbols-outlined chevron" aria-hidden="true">expand_more</span>
+      </button>
+      <ul class="submenu">
+        <li><a href="data-master.html"><span class="material-symbols-outlined" aria-hidden="true">book</span>Books<span class="badge">1,250</span></a></li>
+        <li><a href="categories.html"><span class="material-symbols-outlined" aria-hidden="true">category</span>Categories</a></li>
+        <li><a href="authors.html"><span class="material-symbols-outlined" aria-hidden="true">edit_note</span>Authors</a></li>
+        <li><a href="publishers.html"><span class="material-symbols-outlined" aria-hidden="true">apartment</span>Publishers</a></li>
+      </ul>
+      <a href="membership.html"><span class="material-symbols-outlined" aria-hidden="true">group</span>Membership<span class="badge">342</span></a>
+
+      <p class="menu-label">CIRCULATION</p>
+      <button class="dropdown-btn" aria-expanded="false">
+        <span class="material-symbols-outlined" aria-hidden="true">sync</span>Circulation
+        <span class="material-symbols-outlined chevron" aria-hidden="true">expand_more</span>
+      </button>
+      <ul class="submenu">
+        <li><a href="loans.html"><span class="material-symbols-outlined" aria-hidden="true">assignment</span>Loans<span class="badge">87</span></a></li>
+        <li><a href="returns.html"><span class="material-symbols-outlined" aria-hidden="true">keyboard_return</span>Returns</a></li>
+        <li><a href="reservations.html"><span class="material-symbols-outlined" aria-hidden="true">bookmark</span>Reservations<span class="badge">18</span></a></li>
+        <li><a href="penalties.html"><span class="material-symbols-outlined" aria-hidden="true">payments</span>Penalties</a></li>
+      </ul>
+
+      <p class="menu-label">LIBRARY</p>
+      <a href="digital-collection.html"><span class="material-symbols-outlined" aria-hidden="true">collections_bookmark</span>Digital Collection</a>
+      <a href="laporan.html"><span class="material-symbols-outlined" aria-hidden="true">bar_chart</span>Reports</a>
+      <a href="settings.html"><span class="material-symbols-outlined" aria-hidden="true">settings</span>Settings</a>
+    </nav>
+
+    <div class="profile-card">
+      <div class="avatar">AH</div>
+      <div><strong>Amelia Hart</strong><small>Super Admin</small></div>
+      <a class="icon-btn" href="../index.html" aria-label="Log out"><span class="material-symbols-outlined" aria-hidden="true">logout</span></a>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="main-wrap">
+    <header class="header">
+      <button class="icon-btn" id="menuToggle" aria-label="Toggle sidebar"><span class="material-symbols-outlined" aria-hidden="true">menu</span></button>
+      <div class="page-title"><strong>Returns</strong><small>Process returned books and fines</small></div>
+
+      <label class="search">
+        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        <input type="search" id="searchInput" placeholder="Search books, members, ISBN..." aria-label="Search">
+        <kbd>Ctrl K</kbd>
+      </label>
+
+      <div class="header-right">
+        <div class="clock"><strong id="clockTime"></strong><span id="clockDate"></span></div>
+        <button class="icon-btn" aria-label="Help"><span class="material-symbols-outlined" aria-hidden="true">help</span></button>
+        <button class="icon-btn" aria-label="Notifications"><span class="material-symbols-outlined" aria-hidden="true">notifications</span><span class="dot">4</span></button>
+        <div class="user">
+          <div class="avatar">AH</div>
+          <div><strong>Amelia Hart</strong><small>Administrator</small></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">Circulation / <strong>Returns</strong></nav>
+
+      <div class="page-head">
+        <div><h1>Returns</h1><p>Find an active loan, record the book condition, and confirm the return.</p></div>
+      </div>
+
+      <section class="card" aria-labelledby="findTitle">
+        <h2 id="findTitle" class="sr-only">Find a loan</h2>
+        <form class="search-big" id="searchForm" novalidate>
+          <input type="search" id="q" placeholder="Search Loan ID or member name" aria-label="Search Loan ID or member name" aria-describedby="searchError" autocomplete="off">
+          <button type="submit" class="btn btn-primary"><span class="material-symbols-outlined" aria-hidden="true">search</span>Find Loan</button>
+        </form>
+        <p class="search-error" id="searchError" role="alert"></p>
+        <div id="results"></div>
+      </section>
+
+      <div class="returns-grid" id="detail" hidden>
+        <section class="card" aria-labelledby="procTitle">
+          <div class="card-head"><div><h2 id="procTitle">Loan Details</h2><p id="dLoan"></p></div><span id="dLate"></span></div>
+          <dl class="detail-grid">
+            <div><dt>Member</dt><dd id="dMember"></dd></div>
+            <div><dt>Book</dt><dd id="dBook"></dd></div>
+            <div><dt>Loan Date</dt><dd id="dLoanDate"></dd></div>
+            <div><dt>Due Date</dt><dd id="dDue"></dd></div>
+          </dl>
+
+          <form id="retForm" novalidate>
+            <h3 class="section-title">Return Processing</h3>
+            <div class="form-grid" style="grid-template-columns:1fr;margin-bottom:20px">
+              <div class="field" id="field_retDate"><label for="f_retDate">Return Date *</label><input type="date" id="f_retDate" aria-describedby="err_retDate"><p class="error" id="err_retDate"></p></div>
+            </div>
+
+            <fieldset class="cond-grid">
+              <legend class="sr-only">Book condition</legend>
+              <label class="cond cond-good"><input type="radio" name="cond" value="Good" checked><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Good</label>
+              <label class="cond cond-damaged"><input type="radio" name="cond" value="Damaged"><span class="material-symbols-outlined" aria-hidden="true">build_circle</span>Damaged</label>
+              <label class="cond cond-lost"><input type="radio" name="cond" value="Lost"><span class="material-symbols-outlined" aria-hidden="true">cancel</span>Lost</label>
+            </fieldset>
+
+            <div class="field" id="field_note" hidden>
+              <label for="f_note" id="lblNote">Condition Notes</label>
+              <textarea id="f_note" rows="3" placeholder="Describe the damage or the circumstances of the loss" aria-describedby="err_note"></textarea>
+              <p class="error" id="err_note"></p>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn" id="cancelBtn">Cancel</button>
+              <button type="submit" class="btn btn-primary">Confirm Return</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="card" aria-labelledby="fineTitle">
+          <h2 id="fineTitle" style="font-size:15px">Fine Summary</h2>
+          <ul class="fine-list" id="fineList"></ul>
+          <div class="fine-total"><span>Total</span><span id="fineTotal">Rp 0</span></div>
+        </aside>
+      </div>
+
+      <section class="card" style="margin-top:16px" aria-labelledby="recentTitle">
+        <div class="card-head"><div><h2 id="recentTitle">Recent Returns</h2><p>Latest 8 returned books</p></div></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Loan ID</th><th>Member</th><th>Book</th><th>Return Date</th><th>Condition</th><th>Fine</th><th>Status</th></tr></thead>
+            <tbody id="recentBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">&copy; 2026 E-Library Admin. All rights reserved.</footer>
+  </div>
+
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/circ.js"></script>
+  <script src="../assets/js/returns.js"></script>
+</body>
+</html>
